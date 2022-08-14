@@ -17,3 +17,6 @@ apt-get update
 
 echo "**** installing powershell ****"
 apt-get -y install powershell
+
+echo "**** installing direnv ****"
+apt-get -y install direnv
