@@ -23,3 +23,11 @@ apt-get -y install direnv
 
 echo "**** installing brew ****"
 CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+echo "**** installing tfenv ****"
+brew install tfenv
+tfenv install 0.12.31
+tfenv install 0.14.3
+tfenv install 1.1.2
+tfenv use 0.12.31
