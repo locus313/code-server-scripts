@@ -20,3 +20,6 @@ apt-get -y install powershell
 
 echo "**** installing direnv ****"
 apt-get -y install direnv
+
+echo "**** installing brew ****"
+CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
