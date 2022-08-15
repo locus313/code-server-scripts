@@ -4,7 +4,7 @@ echo "**** updating the list of packages ****"
 apt-get update
 
 echo "**** installing pre-requisite packages ****"
-apt-get install -y acl apt-transport-https software-properties-common vim wget unzip
+apt-get install -y acl apt-transport-https gpg software-properties-common vim wget unzip
 
 echo "**** downloading the microsoft repository gpg keys ****"
 wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
@@ -16,6 +16,10 @@ rm -Rf packages-microsoft-prod.deb
 "**** installing the docker repository gpg keys ****"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+"**** installing the 1password repository gpg keys ****"
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | tee /etc/apt/sources.list.d/1password.list
 
 echo "**** updating the list of packages after adding repos ****"
 apt-get update
@@ -31,6 +35,9 @@ apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 usermod -aG docker abc
 groupmod -g 281 docker
 setfacl --modify user:abc:rw /var/run/docker.sock
+
+echo "**** installing 1password ****"
+apt-get -y install 1password-cli
 
 echo "**** installing brew ****"
 CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
