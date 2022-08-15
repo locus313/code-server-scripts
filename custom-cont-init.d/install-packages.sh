@@ -4,7 +4,7 @@ echo "**** updating the list of packages ****"
 apt-get update
 
 echo "**** installing pre-requisite packages ****"
-apt-get install -y wget apt-transport-https software-properties-common vim unzip
+apt-get install -y acl apt-transport-https software-properties-common vim wget unzip
 
 echo "**** downloading the microsoft repository gpg keys ****"
 wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
@@ -29,6 +29,7 @@ apt-get -y install direnv
 echo "**** installing docker ****"
 apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 usermod -aG docker abc
+setfacl --modify user:abc:rw /var/run/docker.sock
 
 echo "**** installing brew ****"
 CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
