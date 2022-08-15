@@ -4,7 +4,7 @@ echo "**** updating the list of packages ****"
 apt-get update
 
 echo "**** installing pre-requisite packages ****"
-apt-get install -y wget apt-transport-https software-properties-common vim
+apt-get install -y wget apt-transport-https software-properties-common vim unzip
 
 echo "**** downloading the microsoft repository gpg keys ****"
 wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
