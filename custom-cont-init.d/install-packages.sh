@@ -11,6 +11,7 @@ wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/package
 
 echo "**** installing the microsoft repository gpg keys ****"
 dpkg -i packages-microsoft-prod.deb
+rm -Rf packages-microsoft-prod.deb
 
 echo "**** updating the list of packages after adding repos ****"
 apt-get update
@@ -38,6 +39,11 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 ./aws/install
 rm -Rf awscliv2.zip
+
+echo "**** installing aws session manager plugin ****"
+curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+dpkg -i session-manager-plugin.deb
+rm -Rf session-manager-plugin.deb
 
 echo "**** installing aws-vault ****"
 curl -L -o /usr/local/bin/aws-vault https://github.com/99designs/aws-vault/releases/latest/download/aws-vault-linux-amd64
