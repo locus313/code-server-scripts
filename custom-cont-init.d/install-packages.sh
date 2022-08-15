@@ -29,6 +29,7 @@ apt-get -y install direnv
 echo "**** installing docker ****"
 apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 usermod -aG docker abc
+groupmod -g 281 docker
 setfacl --modify user:abc:rw /var/run/docker.sock
 
 echo "**** installing brew ****"
