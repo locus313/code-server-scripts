@@ -13,6 +13,10 @@ echo "**** installing the microsoft repository gpg keys ****"
 dpkg -i packages-microsoft-prod.deb
 rm -Rf packages-microsoft-prod.deb
 
+"**** installing the docker repository gpg keys ****"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
 echo "**** updating the list of packages after adding repos ****"
 apt-get update
 
@@ -21,6 +25,9 @@ apt-get -y install powershell
 
 echo "**** installing direnv ****"
 apt-get -y install direnv
+
+echo "**** installing docker ****"
+apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 echo "**** installing brew ****"
 CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
