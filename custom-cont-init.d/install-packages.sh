@@ -26,8 +26,9 @@ CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/insta
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 echo "**** installing tfenv ****"
-brew install tfenv
-tfenv install 0.12.31
-tfenv install 0.14.3
-tfenv install 1.1.2
-tfenv use 0.12.31
+git clone --depth=1 https://github.com/tfutils/tfenv.git /config/.tfenv
+/config/.tfenv/bin/tfenv install 0.12.31
+/config/.tfenv/bin/tfenv install 0.14.3
+/config/.tfenv/bin/tfenv install 1.1.2
+/config/.tfenv/bin/tfenv use 0.12.31
+chown -R 99:100 /config/.tfenv
