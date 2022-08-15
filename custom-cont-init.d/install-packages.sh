@@ -32,3 +32,13 @@ git clone --depth=1 https://github.com/tfutils/tfenv.git /config/.tfenv
 /config/.tfenv/bin/tfenv install 1.1.2
 /config/.tfenv/bin/tfenv use 0.12.31
 chown -R 99:100 /config/.tfenv
+
+echo "**** installing awscli ****"
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+./aws/install
+rm -Rf awscliv2.zip
+
+echo "**** installing aws-vault ****"
+curl -L -o /usr/local/bin/aws-vault https://github.com/99designs/aws-vault/releases/latest/download/aws-vault-linux-amd64
+chmod 755 /usr/local/bin/aws-vault
