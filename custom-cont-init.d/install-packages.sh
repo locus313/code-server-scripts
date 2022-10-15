@@ -47,7 +47,9 @@ echo "**** installing tfenv ****"
 git clone --depth=1 https://github.com/tfutils/tfenv.git /config/.tfenv
 /config/.tfenv/bin/tfenv install 0.12.31
 /config/.tfenv/bin/tfenv install 0.14.3
-/config/.tfenv/bin/tfenv install 1.1.2
+/config/.tfenv/bin/tfenv install 0.14.11
+/config/.tfenv/bin/tfenv install 1.1.9
+/config/.tfenv/bin/tfenv install 1.2.2
 /config/.tfenv/bin/tfenv use 0.12.31
 chown -R 99:100 /config/.tfenv
 
@@ -65,3 +67,10 @@ rm -Rf session-manager-plugin.deb
 echo "**** installing aws-vault ****"
 curl -L -o /usr/local/bin/aws-vault https://github.com/99designs/aws-vault/releases/latest/download/aws-vault-linux-amd64
 chmod 755 /usr/local/bin/aws-vault
+
+echo "**** installing aws-vault ****"
+curl -L -o /usr/local/bin/aws-vault https://github.com/99designs/aws-vault/releases/latest/download/aws-vault-linux-amd64
+chmod 755 /usr/local/bin/aws-vault
+
+echo "**** installing lacework-cli ****"
+brew install lacework/tap/lacework-cli
