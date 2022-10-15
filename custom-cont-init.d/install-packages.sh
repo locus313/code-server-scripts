@@ -39,6 +39,9 @@ setfacl --modify user:abc:rw /var/run/docker.sock
 echo "**** installing 1password ****"
 apt-get -y install 1password-cli
 
+echo "**** installing clang ****"
+apt-get -y install clang
+
 echo "**** installing brew ****"
 CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
