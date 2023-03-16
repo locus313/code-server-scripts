@@ -4,9 +4,10 @@ echo "**** updating the list of packages ****"
 apt-get update
 
 echo "**** installing pre-requisite packages ****"
-apt-get install -y acl apt-transport-https gpg software-properties-common vim wget unzip
+apt-get install -y acl apt-transport-https gpg make software-properties-common vim wget unzip
 
 echo "**** downloading the microsoft repository gpg keys ****"
+mkdir -p /etc/apt/keyrings
 wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
 
 echo "**** installing the microsoft repository gpg keys ****"
@@ -14,8 +15,8 @@ dpkg -i packages-microsoft-prod.deb
 rm -Rf packages-microsoft-prod.deb
 
 "**** installing the docker repository gpg keys ****"
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 "**** installing the 1password repository gpg keys ****"
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
@@ -33,7 +34,7 @@ apt-get -y install direnv
 echo "**** installing docker ****"
 apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 usermod -aG docker abc
-groupmod -g 281 docker
+groupmod -g 65537 docker
 setfacl --modify user:abc:rw /var/run/docker.sock
 
 echo "**** installing 1password ****"
