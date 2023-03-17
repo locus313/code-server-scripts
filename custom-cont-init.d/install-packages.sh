@@ -54,6 +54,8 @@ git clone --depth=1 https://github.com/tfutils/tfenv.git /config/.tfenv
 /config/.tfenv/bin/tfenv install 0.14.11
 /config/.tfenv/bin/tfenv install 1.1.9
 /config/.tfenv/bin/tfenv install 1.2.2
+/config/.tfenv/bin/tfenv install 1.3.9
+/config/.tfenv/bin/tfenv install 1.4.2
 /config/.tfenv/bin/tfenv use 0.12.31
 chown -R 99:100 /config/.tfenv
 
