@@ -22,6 +22,10 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | tee /etc/apt/sources.list.d/1password.list
 
+"**** installing the packer repository gpg keys ****"
+curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor --output /usr/share/keyrings/packer-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/packer-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/packer.list
+
 echo "**** updating the list of packages after adding repos ****"
 apt-get update
 
@@ -57,7 +61,10 @@ git clone --depth=1 https://github.com/tfutils/tfenv.git /config/.tfenv
 /config/.tfenv/bin/tfenv install 1.3.9
 /config/.tfenv/bin/tfenv install 1.4.2
 /config/.tfenv/bin/tfenv use 0.12.31
-chown -R 99:100 /config/.tfenv
+# chown -R 99:100 /config/.tfenv
+
+echo "**** installing packer ****"
+apt-get -y install packer
 
 echo "**** installing awscli ****"
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
