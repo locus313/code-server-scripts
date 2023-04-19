@@ -23,7 +23,7 @@ curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --dearmo
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | tee /etc/apt/sources.list.d/1password.list
 
 "**** installing the packer repository gpg keys ****"
-curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor --output /usr/share/keyrings/packer-keyring.gpg
+curl -sS https://apt.releases.hashicorp.com/gpg | gpg --dearmor --output /etc/apt/keyrings/packer-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/packer-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/packer.list
 
 echo "**** updating the list of packages after adding repos ****"
