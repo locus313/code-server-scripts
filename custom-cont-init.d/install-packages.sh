@@ -89,4 +89,4 @@ echo "**** installing lacework-cli ****"
 brew install lacework/tap/lacework-cli
 
 echo "**** installing k9s ****"
-brew brew install derailed/k9s/k9s
+brew install derailed/k9s/k9s
